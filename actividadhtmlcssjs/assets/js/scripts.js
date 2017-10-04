@@ -26,6 +26,7 @@ function _validateField(field, fn, msj) {
 function checkFullName() {
     _validateField(document.getElementById('input1'), function(value){
       //FIXME: "% % % %" is incorrect
+      //TODO:[A-Z]*  [A-Z]* could work
       return value && value.includes(" ") && 1 === value.search("n*\sn*");
     });
 }
