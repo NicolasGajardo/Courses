@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Actividad HTML5 (HTML/CSS/JS)</title>
+	<meta name="author" content="Manuel Vasquez Cruz">
+	<link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+</head>
+<body>
+	<header>
+		<img class="header-img" src="./assets/img/logohtml5.png">
+		<img class="header-img" src="./assets/img/logocss3.png">
+		<img class="header-img" src="./assets/img/logojs.png">
+		<h1 class="header-h1">Validación de formularios</h1>
+	</header>
+	<section>
+		<article>
+			<div>
+				<ul>
+					<li>Validar segun lo descrito bajo los inputs.</li>
+					<li>Un input al estar valido debe mostrar al gato correspondiente.</li>
+					<li>Estas validaciones se desencadenan al enviar el formulario, pero este no debe enviarse.</li>
+					<li>El hacer click sobre una imagen del formulario debe hacer que esta no se vea nuevamente.</li>
+					<li>Imprimir todos los valores del formulario por consola.</li>
+				</ul>
+				<div>
+					<img src="http://www.catster.com/wp-content/uploads/2017/06/small-kitten-meowing.jpg" class="instr-img">
+				</div>
+			</div>
+			<form name="formulario1" action="" onsubmit="return validateForm()">
+				<div class="group-input">
+					<label for="input1">Nombre y Apellido</label>
+					<input type="text" name="input1" id="input1">
+					<p>Se debe validar que se escriba un solo nombre y un solo apellido, asi mismo, solo deben ser letras en mayusculas.</p>
+				</div>
+				<div>
+					<img src="https://media.mnn.com/assets/images/2016/11/cat-with-big-eyes-gimo.jpg.653x0_q80_crop-smart.jpg" class="form-img">
+				</div>
+				<div class="group-input">
+					<label for="input2">Edad</label>
+					<input type="text" name="input2" id="input2">
+					<p>Se debe validar que solo sean numeros, y que sean mayor o igual a 1 y menor o igual que 150.</p>
+				</div>
+				<div>
+					<img src="https://i.pinimg.com/736x/a9/0c/0e/a90c0ef7fcd4753d90e0cfb688ecf57f--black-cats-haha.jpg" class="form-img">
+				</div>
+				<div class="group-input">
+					<label for="input3">Color básico favorito</label>
+					<input type="text" name="input3" id="input3">
+					<p>Se debe validar que el color solo sea ROJO, VERDE, AZUL.</p>
+				</div>
+				<div>
+					<img src="http://www.catster.com/wp-content/uploads/2016/05/cats-politics-TN.jpg" class="form-img">
+				</div>
+				<div class="group-input">
+					<label for="input4">Lenguaje de programacion favorito</label>
+					<input type="text" name="input4" id="input4">
+					<p>Se debe validar que el sólo sea Java.</p>
+				</div>
+				<div>
+					<img src="https://thechive.files.wordpress.com/2016/02/meow-thats-what-i-call-dancing-24-photos-10-e1454525017272.jpg?quality=85&strip=info" class="form-img">
+				</div>
+				<div class="group-input">
+					<label for="input5">Cuenta Bancaria</label>
+					<input type="text" name="input5" id="input5">
+					<p>Se debe validar que el sólo sean numeros y su largo sea mayor a 5 y menor que 20.</p>
+				</div>
+				<div>
+					<img src="https://i.ytimg.com/vi/DyxVNKBkqJk/hqdefault.jpg" class="form-img">
+				</div>
+				<div class="group-input">
+					<label for="input6">Invente un palindrome</label>
+					<input type="text" name="input6" id="input6">
+					<p>Se debe validar que la cadena sea mayor a 3 carácteres, y que sea palindrome (lectura igual desde izquierda a derecha, que desde derecha a izquierda).</p>
+				</div>
+				<div>
+					<img src="http://img.myconfinedspace.com/wp-content/uploads/2013/04/money-cat-11.jpg" class="form-img">
+				</div>
+				<div class="group-input">
+					<label for="input7">Ingrese el dia del mes de hoy</label>
+					<input type="text" name="input7" id="input7">
+					<p>Debe validar que el dia del mes ingresado corresponde a hoy, por ejemplo si es 29 de Septiembre, el dia sería 29</p>
+				</div>
+				<div>
+					<img src="http://kittentoob.com/wp-content/uploads/2017/02/sleeping-cat-2-750x469.jpg" class="form-img">
+				</div>
+				<div class="group-submit">
+					<button>Enviar</button>
+				</div>
+			</form>
+		</article>
+	</section>
+	<script type="text/javascript" src="./assets/js/scripts.js"></script>
+</body>
+</html>
