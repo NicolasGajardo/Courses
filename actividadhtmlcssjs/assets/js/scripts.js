@@ -16,7 +16,7 @@ var _changeInputColor = function( field , bol){
 
 //TODO: msj functionality (use clousures)
 function _validateField(field, fn, msj) {
-  //return the validated Field 
+  //return the validated Field
   var r = fn(field.value);
   _changeInputColor(field, r);
   return r;
@@ -25,9 +25,8 @@ function _validateField(field, fn, msj) {
 //TODO: refactor the currently way of getting the object
 function checkFullName() {
     _validateField(document.getElementById('input1'), function(value){
-      //FIXME: "% % % %" is incorrect
-      //TODO:[A-Z]*  [A-Z]* could work
-      return value && value.includes(" ") && 1 === value.search("n*\sn*");
+      var re = new RegExp("^[A-Z]* [A-Z]*$");
+      return value.match(re);
     });
 }
 
@@ -39,15 +38,17 @@ function checkAge() {
 
 function checkColour() {
     _validateField(document.getElementById('input3'), function(value){
-      var v = value.toUpperCase();
-      return v === 'ROJO' ||  v === 'VERDE' ||  v === 'AZUL';
+      // var v = value.toUpperCase();
+      // return v === 'ROJO' ||  v === 'VERDE' ||  v === 'AZUL';
+      var colores = ['ROJO', 'VERDE', 'AZUL'];
+      return colores.indexOf(value.toUpperCase())>=0 ? true : false;
     });
 }
 
 function checkProgramingLanguage() {
     _validateField(document.getElementById('input4'), function(value){
-      var v = value.toUpperCase();
-      return v === 'JAVA';
+      // var v = value.toUpperCase();
+      return value.toUpperCase() === 'JAVA';
     });
 }
 
