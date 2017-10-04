@@ -30,7 +30,7 @@
 			<form name="formulario1" action="" onsubmit="return validateForm()">
 				<div class="group-input">
 					<label for="input1">Nombre y Apellido</label>
-					<input type="text" name="input1" id="input1">
+					<input type="text" name="input1" id="input1" onblur="return checkFullName()">
 					<p>Se debe validar que se escriba un solo nombre y un solo apellido, asi mismo, solo deben ser letras en mayusculas.</p>
 				</div>
 				<div>
@@ -38,7 +38,7 @@
 				</div>
 				<div class="group-input">
 					<label for="input2">Edad</label>
-					<input type="text" name="input2" id="input2">
+					<input type="text" name="input2" id="input2" onblur="return checkAge()">
 					<p>Se debe validar que solo sean numeros, y que sean mayor o igual a 1 y menor o igual que 150.</p>
 				</div>
 				<div>
@@ -46,7 +46,7 @@
 				</div>
 				<div class="group-input">
 					<label for="input3">Color básico favorito</label>
-					<input type="text" name="input3" id="input3">
+					<input type="text" name="input3" id="input3" onblur="return checkColour()">
 					<p>Se debe validar que el color solo sea ROJO, VERDE, AZUL.</p>
 				</div>
 				<div>
@@ -54,7 +54,7 @@
 				</div>
 				<div class="group-input">
 					<label for="input4">Lenguaje de programacion favorito</label>
-					<input type="text" name="input4" id="input4">
+					<input type="text" name="input4" id="input4" onblur="return checkProgramingLanguage()">
 					<p>Se debe validar que el sólo sea Java.</p>
 				</div>
 				<div>
@@ -62,7 +62,7 @@
 				</div>
 				<div class="group-input">
 					<label for="input5">Cuenta Bancaria</label>
-					<input type="text" name="input5" id="input5">
+					<input type="text" name="input5" id="input5" onblur="return checkBankAccount()">
 					<p>Se debe validar que el sólo sean numeros y su largo sea mayor a 5 y menor que 20.</p>
 				</div>
 				<div>
@@ -70,7 +70,7 @@
 				</div>
 				<div class="group-input">
 					<label for="input6">Invente un palindrome</label>
-					<input type="text" name="input6" id="input6">
+					<input type="text" name="input6" id="input6" onblur="return checkPalindrome()">
 					<p>Se debe validar que la cadena sea mayor a 3 carácteres, y que sea palindrome (lectura igual desde izquierda a derecha, que desde derecha a izquierda).</p>
 				</div>
 				<div>
@@ -78,7 +78,7 @@
 				</div>
 				<div class="group-input">
 					<label for="input7">Ingrese el dia del mes de hoy</label>
-					<input type="text" name="input7" id="input7">
+					<input type="text" name="input7" id="input7" onblur="return checkTodayDate()">
 					<p>Debe validar que el dia del mes ingresado corresponde a hoy, por ejemplo si es 29 de Septiembre, el dia sería 29</p>
 				</div>
 				<div>
