@@ -1,7 +1,8 @@
+//TODO: Implement iffe
 function validateForm() {
-    var submit = document.forms.formulario1.input1.value;
-    console.log(submit);
-    return false;
+  var submit = document.forms.formulario1.input1.value;
+  console.log(submit);
+  return false;
 }
 //id, boolean
 var _changeInputColor = function( field , bol){
@@ -68,5 +69,3 @@ function checkTodayDate() {
       return d.getDate() == value;
     });
 }
-
-
