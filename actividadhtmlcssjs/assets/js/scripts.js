@@ -13,6 +13,7 @@ var _changeInputColor = function( field , bol){
   }
 };
 
+//TODO: msj functionality (use clousures)
 function _validateField(field, fn, msj) {
   //return the validated Field 
   var r = fn(field.value);
