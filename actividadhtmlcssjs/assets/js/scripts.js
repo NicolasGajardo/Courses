@@ -1,11 +1,13 @@
 function validateForm() {
-  return checkFullName() &&
-  checkAge() &&
-  checkColour() &&
-  checkProgramingLanguage() &&
-  checkBankAccount() &&
-  checkPalindrome() &&
+  var r;
+  checkFullName();
+  checkAge();
+  checkColour();
+  checkProgramingLanguage();
+  checkBankAccount();
+  checkPalindrome();
   checkTodayDate();
+  return false;
 }
 
 IMGS = {
@@ -18,6 +20,10 @@ IMGS = {
   input7:"img_dia",
 };
 
+function hideImage(id) {
+  var img = document.getElementById(id);
+  img.style.display = "none";
+}
 
 //TODO: msj functionality (use clousures)
 //TODO: onSubmit functionality
@@ -51,7 +57,6 @@ function _displayResult(field, r){
   _showImage(field, r);
 }
 
-//TODO: refactor the currently way of getting the object
 function checkFullName() {
   _validateField(document.getElementById('input1'), function(value){
     var re = new RegExp("^[A-Z]* [A-Z]*$");
