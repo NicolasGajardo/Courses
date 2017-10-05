@@ -1,8 +1,14 @@
 //TODO: Implement iffe
 function validateForm() {
-  var submit = document.forms.formulario1.input1.value;
-  console.log(submit);
-  return false;
+  // var submit = document.forms.formulario1.input1.value;
+  // console.log(submit);
+  return checkFullName() &&
+  checkAge() &&
+  checkColour() &&
+  checkProgramingLanguage() &&
+  checkBankAccount() &&
+  checkPalindrome() &&
+  checkTodayDate();
 }
 //id, boolean
 var _changeInputColor = function( field , bol){
