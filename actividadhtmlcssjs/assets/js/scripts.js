@@ -86,7 +86,7 @@ function checkBankAccount() {
 
 function checkPalindrome() {
   _validateField(document.getElementById('input6'), function(value){
-    return value === value.split("").reverse().join("");
+    return value.length>3 && value === value.split("").reverse().join("");
   });
 }
 
