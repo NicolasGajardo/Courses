@@ -27,9 +27,9 @@ function _displayResult(field, r){
     }
   };
   var _showImage = function( field , bol){
-    
+
   };
-  
+
   _changeInputColor(field, r);
   _showImage(field, r);
 }
@@ -69,7 +69,7 @@ function checkBankAccount() {
 
 function checkPalindrome() {
   _validateField(document.getElementById('input6'), function(value){
-    return value === value.split("").reverse().join("");
+    return value.length>3 && value === value.split("").reverse().join("");
   });
 }
 
