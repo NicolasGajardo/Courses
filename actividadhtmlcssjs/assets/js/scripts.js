@@ -1,7 +1,11 @@
 function validateForm() {
-  var submit = document.forms.formulario1;
-  console.log(submit);
-  return false;
+  return checkFullName() &&
+  checkAge() &&
+  checkColour() &&
+  checkProgramingLanguage() &&
+  checkBankAccount() &&
+  checkPalindrome() &&
+  checkTodayDate();
 }
 
 //TODO: msj functionality (use clousures)
