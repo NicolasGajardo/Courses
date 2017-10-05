@@ -34,7 +34,17 @@ function _validateField(field, fn) {
   
   return r;
 }
-
+/*
+var _validateField2 = {
+  b: false,
+  doValidate: function(field, fn) {
+    var r = fn(field.value);
+    _displayResult(field, r); //TODO: Rename
+    this.b = r;
+    return r;
+  }
+};
+*/
 function _displayResult(field, r){
   var _changeInputColor = function( field , bol){
     field.style.outlineStyle = "solid";
