@@ -8,12 +8,24 @@ function validateForm() {
   checkTodayDate();
 }
 
+IMGS = {
+  input1: "img_nombre",
+  input2: "img_edad",
+  input3: "img_color",
+  input4:"img_java",
+  input5:"img_cuenta",
+  input6:"img_palindromo",
+  input7:"img_dia",
+};
+
+
 //TODO: msj functionality (use clousures)
 //TODO: onSubmit functionality
-function _validateField(field, fn, msj) {
+function _validateField(field, fn) {
   //return the validated Field
   var r = fn(field.value);
   _displayResult(field, r); //TODO: Rename
+  
   return r;
 }
 
@@ -26,8 +38,13 @@ function _displayResult(field, r){
       field.style.outlineColor = "red";
     }
   };
-  var _showImage = function( field , bol){
-    
+  var _showImage = function(field , bol){
+    var img = document.getElementById(IMGS[field.id]);
+    if(bol){
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
   };
   
   _changeInputColor(field, r);
