@@ -1,4 +1,4 @@
-(function (win, $){
+;(function (win, $){
   
   var Greetr = function(firstame, lastname, language) {
     return new Greetr.init(firstame, lastname, language);
