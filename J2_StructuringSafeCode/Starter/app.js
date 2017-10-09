@@ -1,1 +1,1 @@
-var g = G$('Jhon', 'Doe');
+var g = window.G$('Jhon', 'Doe');

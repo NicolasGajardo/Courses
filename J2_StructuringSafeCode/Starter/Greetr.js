@@ -21,7 +21,19 @@
     es: 'Inició sesión'
   };
   
-  Greetr.prototype = {
+  // Contructor
+  Greetr.init = function(firstame, lastname, language) {
+    
+    var self = this;
+    
+    self.firstame = firstame || '';
+    self.lastname = lastname || '';
+    self.language = language || 'en';
+    
+    self.validate();
+  };
+  
+  Greetr.init.prototype = {
     fullname: function(){
       return this.firstame + ' ' + this.lastname;
     },
@@ -37,7 +49,7 @@
     },
     
     formalGreeting: function(){
-      return greetings[this.language] + ' ' + this.fullname();
+      return formalGreetings[this.language] + ', ' + this.fullname();
     },
     
     greet: function(formal){
@@ -65,20 +77,32 @@
       this.language = lang;
       this.validate();
       return this; 
+    },
+    
+    HTMLGreeting: function(selector, formal){
+      if(!$){
+        throw 'jQuery not loaded yet';
+      }
+      
+      if(!selector){
+        throw 'Missing jQuery selector';
+      }
+      
+      var msg;
+      
+      if(formal){
+        msg = this.formalGreeting();
+      } else {
+        msg = this.greeting();
+      }
+      
+      $(selector).html(msg);
+
+      return this;
     }
   };
-    
-  Greetr.init = function(firstame, lastname, language) {
-    
-    var self = this;
-    
-    self.firstame = firstame || '';
-    self.lastname = lastname || '';
-    self.language = language || 'en';
 
-  };
-  
-  Greetr.init.prototype = Greetr.prototype;
+  Greetr.prototype = Greetr.init.prototype;
   
   win.Greetr = win.G$ = Greetr;
   
