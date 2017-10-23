@@ -1,19 +1,33 @@
 (function(win, $) {
-  var RedCircle = function() {
+  function RedCircle() {
+  }
+  
+  RedCircle.prototype.create = function () {
       this.item = $('<div class="circle"></div>');
-    },
-    BlueCircle = function() {
+      return this;
+  };
+  
+  function BlueCircle() {
+  }
+  
+  BlueCircle.prototype.create = function () {
       this.item = $('<div class="circle" style="background:blue"></div>');
-    },
-    CircleFactory = function() {
-      this.create = function(color) {
-        if ('blue' === color) {
-          return new BlueCircle();
-        } else {
-          return new RedCircle();
-        }
-      };
+      return this;
+  };
+    
+  var AbstractCircleFactory = function() {
+    this.types= {};
+    
+    this.create = function(type) {
+      return (new this.types[type]()).create();
     };
+    
+    this.register = function(type, cls){
+      if(cls.prototype.create){
+        this.types[type] = cls;
+      }
+    };
+  };
 
   var CircleGeneratorSingleton = (function() {
     var instance;
@@ -21,15 +35,18 @@
     function init() {
       var _aCircle = [],
         _stage = $('.advert'),
-        _cf = new CircleFactory();
-
+        _acf = new AbstractCircleFactory();
+        
+        _acf.register('red', RedCircle);
+        _acf.register('blue', BlueCircle);
+        
       function _position(circle, left, top) {
         circle.css('left', left);
         circle.css('top', top);
       }
 
-      function create(left, top, color) {
-        var circle = _cf.create(color).item;
+      function create(left, top, type) {
+        var circle = _acf.create(type).item;
         _position(circle, left, top);
 
         return circle;
