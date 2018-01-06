@@ -47,13 +47,14 @@
 		};
 	})(); 
 
+	if(!win.chatModule) win.chatModule = chatModule;
+
 	$(doc).ready(function(){
 		chatModule.talk("this is great");
 		chatModule.replayYesNo();
 		chatModule.saySassyStuff();
 	});
 
-	if(!win.chatModule) win.chatModule = chatModule;
 })(window, document,jQuery);
 
 console.log(window.chatModule);
