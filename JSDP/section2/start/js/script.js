@@ -1,29 +1,56 @@
 (function(win, $) {
-  function RedCircle() {
+  function Circle(){
+    this.item = $('<div class="circle"></div>');
   }
   
-  RedCircle.prototype.create = function () {
-      this.item = $('<div class="circle"></div>');
-      return this;
+  Circle.prototype.color = function (clr) {
+    this.item.css('background', clr);
   };
   
-  function BlueCircle() {
+  Circle.prototype.move = function(left, top) {
+    this.item.css('left', left);
+    this.item.css('top', top);
   }
   
-  BlueCircle.prototype.create = function () {
-      this.item = $('<div class="circle" style="background:blue"></div>');
-      return this;
+  Circle.prototype.get = function () {
+    return this.item;
+  };
+
+  function RedCircleBuilder() {
+    this.item = new Circle();
+    this.init();
+  }
+  
+  RedCircleBuilder.prototype.init = function () {
+    this.item.color("red");
+  };
+  
+  RedCircleBuilder.prototype.get = function () {
+    return this.item;
+  };
+  
+  function BlueCircleBuilder() {
+    this.item = new Circle();
+    this.init();
+  }
+  
+  BlueCircleBuilder.prototype.init = function () {
+    this.item.color("blue");
+  };
+  
+  BlueCircleBuilder.prototype.get = function () {
+    return this.item;
   };
     
   var AbstractCircleFactory = function() {
     this.types= {};
     
     this.create = function(type) {
-      return (new this.types[type]()).create();
+      return (new this.types[type]()).get();
     };
     
     this.register = function(type, cls){
-      if(cls.prototype.create){
+      if(cls.prototype.init && cls.prototype.get){
         this.types[type] = cls;
       }
     };
@@ -37,23 +64,21 @@
         _stage = $('.advert'),
         _acf = new AbstractCircleFactory();
         
-        _acf.register('red', RedCircle);
-        _acf.register('blue', BlueCircle);
+        _acf.register('red', RedCircleBuilder);
+        _acf.register('blue', BlueCircleBuilder);
         
       function _position(circle, left, top) {
-        circle.css('left', left);
-        circle.css('top', top);
+        circle.move(left, top);
       }
 
       function create(left, top, type) {
-        var circle = _acf.create(type).item;
-        _position(circle, left, top);
-
+        var circle = _acf.create(type);
+        circle.move(left, top);
         return circle;
       }
 
       function add(circle) {
-        _stage.append(circle);
+        _stage.append(circle.get());
         _aCircle.push(circle);
       }
 
