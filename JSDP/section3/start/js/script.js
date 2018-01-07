@@ -70,7 +70,21 @@
 				}
 			}
 	};
+	
+	function StageAdapter(id) {
+		this.index = 0;
+		this.context = $(id);
+	}
 
+	StageAdapter.prototype.SIG = 'stageItem_';
+	StageAdapter.prototype.add = function (item) {
+		++this.index; 
+		item.addClass(this.SIG + this.index);
+		this.context.append(item);
+	};
+	StageAdapter.prototype.remove = function (index){
+		this.context.remove('.' + this.SIG + index);
+	}
 
 	var CircleGeneratorSingleton = (function(){
 		var instance;
@@ -100,10 +114,10 @@
 			}
 
 			function add(circle){
-				_stage.append(circle.get());
+				_stage.add(circle.get());
 				_aCircle.push(circle);
 			}
-
+			
 			function index(){
 				return _aCircle.length;
 			}
@@ -131,28 +145,23 @@
 		var cg = CircleGeneratorSingleton.getInstance();
 		cg.register('red', RedCircleBuilder);
 		cg.register('blue', BlueCircleBuilder);
-		cg.setStage($('.advert'));
+		cg.setStage(new StageAdapter('.advert'));
 		
 		$('.advert').click(function(e){
-			var cg = CircleGeneratorSingleton.getInstance();
 			var circle = cg.create(e.pageX-25, e.pageY-25,"red");
 
 			cg.add(circle);
-				
 		});
 
 		$(document).keypress(function(e){
 			if(e.key=='a'){
-				var cg = CircleGeneratorSingleton.getInstance();
 				var circle = cg.create(Math.floor(Math.random()*600),
 															Math.floor(Math.random()*600),
 															"blue");
 				
 				cg.add(circle);
 			}
-			
 		});
-
 	});
 
 })(window, jQuery);
