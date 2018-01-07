@@ -58,7 +58,7 @@
 	};
 	
 
-	CircleFactory = function(){
+	ShapeFactory = function(){
 			this.types = {};
 			this.create = function(type){
 				return new this.types[type]().get();
@@ -77,17 +77,24 @@
 
 		function init(){
 			var _aCircle = [],
-					_stage = $('.advert'),
-					_cf = new CircleFactory();
-					_cf.register('red', RedCircleBuilder);
-					_cf.register('blue', BlueCircleBuilder);
+					_stage,
+					_sf = new ShapeFactory();
+
 
 			function _position(circle, left, top){
 				circle.move(left, top);
 			}
+			
+			function registerShape( name, cls){
+				_sf.register(name, cls);
+			}
+			
+			function setStage(stg) {
+				_stage = stg;
+			}
 
 			function create(left, top,type){
-				var circle = _cf.create(type);
+				var circle = _sf.create(type);
 				circle.move(left, top);
 				return circle;
 			}
@@ -103,7 +110,9 @@
 
 			return {index:index,
 							create:create,
-							add:add};
+							add:add,
+							register:registerShape,
+							setStage:setStage};
 		}
 
 		return {
@@ -119,6 +128,11 @@
 	})();
 
 	$(win.document).ready(function(){
+		var cg = CircleGeneratorSingleton.getInstance();
+		cg.register('red', RedCircleBuilder);
+		cg.register('blue', BlueCircleBuilder);
+		cg.setStage($('.advert'));
+		
 		$('.advert').click(function(e){
 			var cg = CircleGeneratorSingleton.getInstance();
 			var circle = cg.create(e.pageX-25, e.pageY-25,"red");
