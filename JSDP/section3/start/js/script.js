@@ -24,7 +24,16 @@
 		this.item = $('<div class="rect"></div>');
 	}
 	clone(Circle, Rect);
-
+	
+	function selfDestructDecorator(obj){
+		obj.item.click(function(){
+			obj.kill();
+		});
+		
+		obj.kill = function () {
+			obj.item.remove();
+		}
+	}
 
 	function RedCircleBuilder(){
 		this.item = new Circle();
@@ -50,6 +59,7 @@
 		var rect = new Rect();
 				rect.color("yellow");
 				rect.move(40,40);
+				selfDestructDecorator(rect);
 
 		this.item.get().append(rect.get());
 	}; 
@@ -85,6 +95,18 @@
 	StageAdapter.prototype.remove = function (index){
 		this.context.remove('.' + this.SIG + index);
 	}
+	
+	function CompositeController(array) {
+		this.array = array;
+	}
+	
+	CompositeController.prototype.action = function (act) {
+		var args = Array.prototype.slice.call(arguments);
+		args.shift();
+		for(var item in this.array){
+			this.array[item][act].apply(this.array[item], args);
+		}
+	};
 
 	var CircleGeneratorSingleton = (function(){
 		var instance;
@@ -93,7 +115,7 @@
 			var _aCircle = [],
 					_stage,
 					_sf = new ShapeFactory();
-
+					_cc = new CompositeController(_aCircle);
 
 			function _position(circle, left, top){
 				circle.move(left, top);
@@ -112,6 +134,14 @@
 				circle.move(left, top);
 				return circle;
 			}
+			
+			function tint(clr){
+				_cc.action('color', clr);
+			}
+
+			function move (left, top){
+				_cc.action('move', left, top);
+			}
 
 			function add(circle){
 				_stage.add(circle.get());
@@ -126,7 +156,9 @@
 							create:create,
 							add:add,
 							register:registerShape,
-							setStage:setStage};
+							setStage:setStage, 
+							tint:tint,
+							move:move};
 		}
 
 		return {
@@ -154,12 +186,22 @@
 		});
 
 		$(document).keypress(function(e){
-			if(e.key=='a'){
+			if(e.key==='r'){
 				var circle = cg.create(Math.floor(Math.random()*600),
 															Math.floor(Math.random()*600),
 															"blue");
 				
 				cg.add(circle);
+			} else if(e.key === 't'){
+				cg.tint('black');
+			} else if(e.key === 'd')	{
+				cg.move('+=5px', '+=0px');
+			} else if(e.key === 'a'){
+				cg.move('-=5px', '-=0px');
+			} else if(e.key === 's'){
+				cg.move('+=0px', '+=5px');
+			} else if(e.key === 'w'){
+				cg.move('-=0px', '-=5px');
 			}
 		});
 	});
