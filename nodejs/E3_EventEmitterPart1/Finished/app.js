@@ -1,5 +1,11 @@
 var Emitter = require('./emitter');
 
+function Person (name){
+	this.name = name;
+}
+
+var michael = new Person('Michael');
+
 var emtr = new Emitter();
 
 emtr.on('greet', function() {
@@ -11,12 +17,12 @@ emtr.on('greet', function() {
 });
 
 emtr.on('greet', function(u) {
-	console.log(this);
-	if(this instanceof String){
-		
+	console.log(this.name);
+	if(this instanceof Person){
+		console.log('this is instance of Person');
 	}
 	console.log('User: ' + u + ' has logged');
-}.bind({}, 'Nicolás'));
+}.bind(michael, 'Nicolás'));
 
 
 
